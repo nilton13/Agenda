@@ -3,6 +3,7 @@ from django.contrib import messages, auth
 from django.core.validators import validate_email
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from .models import FromContato
 
 def login(request):
     if request.method != 'POST':
@@ -76,4 +77,6 @@ def cadastro(request):
 
 @login_required(redirect_field_name='login')
 def dashboard(request):
-    return render(request, 'accounts/dashboard.html')
+
+    form = FromContato()
+    return render(request, 'accounts/dashboard.html', {'form': form})
